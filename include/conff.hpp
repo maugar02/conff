@@ -24,10 +24,14 @@
 #pragma warning(disable: 4251)
 #endif
 
-#ifdef CONFF_EXPORTS
+#if defined CONFF_EXPORTS && defined _WIN32
 #define CONFF_API __declspec(dllexport)
-#else
+#elif defined _WIN32
 #define CONFF_API __declspec(dllimport)
+#endif
+
+#if defined __linux__
+#define CONFF_API
 #endif
 
 #include <fstream>  // Para manejo de archivos
